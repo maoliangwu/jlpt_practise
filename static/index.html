@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>JLPT Practice</title>
+    <link rel="stylesheet" href="/static/styles.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">N3</div>
+          <div>
+            <h1>JLPT Practice</h1>
+            <p>词汇与句型练习</p>
+          </div>
+        </div>
+        <nav class="main-nav" aria-label="主导航">
+          <button class="nav-button active" data-view="words">单词</button>
+          <button class="nav-button" data-view="grammar">单词形态课堂</button>
+          <button class="nav-button" data-view="special">专项练习</button>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <section id="words-view" class="view active">
+          <div class="toolbar">
+            <div>
+              <h2>单词</h2>
+              <p id="word-summary">加载中</p>
+            </div>
+            <form id="import-form" class="import-form">
+              <input id="group-name" name="group_name" type="text" placeholder="词组名">
+              <input id="word-file" name="file" type="file" accept=".txt,text/plain">
+              <button type="submit">导入</button>
+            </form>
+          </div>
+
+          <div class="split-layout">
+            <aside class="panel group-panel">
+              <div class="panel-title">词组</div>
+              <div id="group-list" class="group-list"></div>
+            </aside>
+            <section class="word-workspace">
+              <div class="list-tools">
+                <input id="word-search" type="search" placeholder="搜索单词、读音、词义">
+                <button id="refresh-words" type="button">刷新</button>
+              </div>
+              <div id="word-list" class="word-list"></div>
+            </section>
+          </div>
+        </section>
+
+        <section id="grammar-view" class="view">
+          <div class="toolbar">
+            <div>
+              <h2>单词形态课堂</h2>
+              <p>先看课堂说明，再做变形点击练习</p>
+            </div>
+          </div>
+          <div class="split-layout">
+            <aside class="panel lesson-panel">
+              <div class="panel-title">课堂</div>
+              <div id="lesson-list" class="group-list"></div>
+            </aside>
+            <section class="grammar-workspace">
+              <article id="lesson-detail" class="lesson-detail"></article>
+              <div class="verb-section">
+                <div class="section-head">
+                  <h3>变形练习</h3>
+                  <button id="shuffle-verbs" type="button">换一批</button>
+                </div>
+                <div id="verb-list" class="verb-list"></div>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <section id="special-view" class="view">
+          <div class="toolbar">
+            <div>
+              <h2>专项练习</h2>
+              <p>按单词难度优先展示</p>
+            </div>
+          </div>
+          <div class="split-layout">
+            <aside class="panel special-panel">
+              <div class="panel-title">分类</div>
+              <div id="special-category-list" class="group-list"></div>
+            </aside>
+            <section class="special-workspace">
+              <div id="special-list" class="special-list"></div>
+            </section>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <template id="word-card-template">
+      <article class="item-card word-card">
+        <div class="card-main">
+          <div>
+            <h3 class="term"></h3>
+            <p class="reading"></p>
+          </div>
+          <a class="moji-link" target="_blank" rel="noreferrer">MOJi</a>
+        </div>
+        <div class="word-meta"></div>
+        <div class="edit-row">
+          <select class="pos-select"></select>
+          <input class="meaning-input" type="text" placeholder="词义">
+          <button class="save-word" type="button">保存</button>
+        </div>
+        <div class="card-actions">
+          <div class="stars" role="radiogroup" aria-label="难度"></div>
+          <button class="delete-word" type="button">移出词组</button>
+        </div>
+      </article>
+    </template>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
